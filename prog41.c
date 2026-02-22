@@ -1,53 +1,73 @@
-# Node class
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+#include <stdio.h>
+#include <stdlib.h>
 
+// Node structure
+struct Node {
+int data;
+struct Node* next;
+};
 
-# Linked List class
-class LinkedList:
-    def __init__(self):
-        self.head = None
+// Head pointer
+struct Node* head = NULL;
 
-    # Insert at end
-    def append(self, data):
-        new_node = Node(data)
+// Insert at end
+void append(int data) {
 
-        # If list empty
-        if self.head is None:
-            self.head = new_node
-            return
+```
+// create new node
+struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+newNode->data = data;
+newNode->next = NULL;
 
-        # Traverse to last node
-        temp = self.head
-        while temp.next:
-            temp = temp.next
+// if list empty
+if (head == NULL) {
+    head = newNode;
+    return;
+}
 
-        temp.next = new_node
+// traverse to last node
+struct Node* temp = head;
+while (temp->next != NULL) {
+    temp = temp->next;
+}
 
-    # Traverse and print
-    def display(self):
-        temp = self.head
-        while temp:
-            print(temp.data, end=" ")
-            temp = temp.next
+temp->next = newNode;
+```
 
+}
 
-# ---- MAIN PROGRAM ----
+// display linked list
+void display() {
+struct Node* temp = head;
 
-# Input number of nodes
-n = int(input())
+```
+while (temp != NULL) {
+    printf("%d ", temp->data);
+    temp = temp->next;
+}
+```
 
-# Input list of values
-values = list(map(int, input().split()))
+}
 
-# Create linked list
-ll = LinkedList()
+// main function
+int main() {
 
-# Insert elements
-for val in values:
-    ll.append(val)
+```
+int n, value;
 
-# Print linked list
-ll.display()
+// number of nodes
+scanf("%d", &n);
+
+// input values
+for(int i = 0; i < n; i++) {
+    scanf("%d", &value);
+    append(value);
+}
+
+// print list
+display();
+
+return 0;
+```
+
+}
